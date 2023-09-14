@@ -14,7 +14,6 @@ namespace NP_ForsikringsData
         {
             TryConnect();
             ExecuteSql("Select * from Kunde");
-            //GetVareListe();
         }
         public bool TryConnect()
         {
@@ -29,9 +28,7 @@ namespace NP_ForsikringsData
             {
                 return false;
             }
-            return true;
-            
-           
+            return true;                   
         }
         public DataTable ExecuteSql(string sql)
         {

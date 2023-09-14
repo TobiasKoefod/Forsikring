@@ -28,6 +28,15 @@ namespace NP_ForsikringsFunc
         public Kunde FjernKunde(Kunde kunde)
         {
             ForsikringsData.FjernKunde(kunde);
+            RaisePropertyChanged(nameof(KundeListe));
+            return kunde;
+        }
+        public Kunde ChangeKunde(Kunde selectedKunde, string fornavn, string efternavn, string adresse, int postnummer, int telefon)
+        {
+            Kunde kunde = new Kunde(fornavn, efternavn, adresse, postnummer, telefon);
+            ForsikringsData.changeKunde(selectedKunde, kunde);
+
+            RaisePropertyChanged(nameof(KundeListe));
             return kunde;
         }
         public Kunde OpretKunde(string fornavn, string efternavn, string adresse, int postnummer, int telefon)
@@ -37,10 +46,5 @@ namespace NP_ForsikringsFunc
             RaisePropertyChanged(nameof(KundeListe));
             return kunde;
         }
-        // void OpretKunde(Kunde kunde)
-        //{
-        //    ForsikringsData.OpretKunde(kunde);
-        //}
-
     }
 }

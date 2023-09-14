@@ -15,7 +15,6 @@ namespace Forsikring
         public string Adresse { get; set; }
         public int Postnummer { get; set; }
         public int Telefon { get; set; }
-        //public static Kunde SelectedItem { get; internal set; }
 
         public Kunde(int id, string fornavn, string efternavn, string adresse, int postnummer, int telefon)
         {
