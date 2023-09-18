@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using ForsikringsClasses;
 using NP_ForsikringsFunc;
 namespace Forsikring
 {
@@ -55,9 +56,19 @@ namespace Forsikring
             }
         }
 
-        private void GemBTN_Click(object sender, RoutedEventArgs e)
+        private void GemBTN_Click(object sender, RoutedEventArgs e) //Dette er gem til 
         {
             ForsikringsFunc.ChangeKunde(dgKunder.SelectedItem as Kunde, tbFornavn.Text, tbEfternavn.Text, tbAdresse.Text, int.Parse(tbPostnummer.Text), int.Parse(tbTelefon.Text));
+        }
+
+        private void btnGem_Click(object sender, RoutedEventArgs e) //Dette er Gem til Bilmodeller
+        {
+            //ForsikringsFunc.OpretBilmdl()
+        }
+
+        private void btnTilføj_Click(object sender, RoutedEventArgs e)
+        {
+            ForsikringsFunc.OpretBilmdl(tbMærke.Text, tbModel.Text, int.Parse(tbStartår.Text), int.Parse(tbSlutår.Text), int.Parse(tbStandartpris.Text), int.Parse(tbForsikringssum.Text));
         }
     }
 }

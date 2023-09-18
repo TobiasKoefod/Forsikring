@@ -1,5 +1,6 @@
 ﻿
 using Forsikring;
+using ForsikringsClasses;
 using NP_ForsikringsData;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,22 @@ namespace NP_ForsikringsData
                 liste.Add(kunde);
             }
             return liste;
+        }
+        public ObservableCollection<Bilmodeller> GetBilModel(DataTable table)
+        {
+            ObservableCollection<Bilmodeller> liste = new ObservableCollection<Bilmodeller>();
+            foreach (DataRow row in table.Rows)
+            {
+                Bilmodeller bilmodeller = GetBilModel(row);
+                liste.Add(bilmodeller);
+            }
+            return liste;
+        }
+        private Bilmodeller GetBilModel(DataRow row)
+        {
+            Bilmodeller bilmodeller = new Bilmodeller((int)row["Id"], (string)row["Mærke"], (string)row["Model"], (int)row["Startår"], (int)row["Slutår"], (int)row["Standartpris"], (int)row["Forsikringssum"]);
+
+            return bilmodeller;
         }
         private Kunde GetKunde(DataRow row)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Forsikring;
+using ForsikringsClasses;
 using NP_ForsikringsData;
 
 namespace NP_ForsikringsFunc
@@ -25,6 +26,14 @@ namespace NP_ForsikringsFunc
                 return ForsikringsData.KundeListe;
             }
         }
+
+        public ObservableCollection<Bilmodeller> BilListe
+        {
+            get
+            {
+                return ForsikringsData.BilListe;
+            }
+        }
         public Kunde FjernKunde(Kunde kunde)
         {
             ForsikringsData.FjernKunde(kunde);
@@ -45,6 +54,13 @@ namespace NP_ForsikringsFunc
             ForsikringsData.OpretKunde(kunde);
             RaisePropertyChanged(nameof(KundeListe));
             return kunde;
+        }
+        public Bilmodeller OpretBilmdl(string mærke, string model, int startår, int slutår, int standartpris, int forsikringssum)
+        {
+            Bilmodeller bilmodeller = new Bilmodeller(mærke, model, startår, slutår, standartpris, forsikringssum);
+            ForsikringsData.OpretBilmdl(bilmodeller);
+            RaisePropertyChanged(nameof (Bilmodeller));
+            return bilmodeller;
         }
     }
 }

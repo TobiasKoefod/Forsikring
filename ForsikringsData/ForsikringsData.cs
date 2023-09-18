@@ -1,4 +1,5 @@
 ﻿using Forsikring;
+using ForsikringsClasses;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +24,13 @@ namespace NP_ForsikringsData
         {
 
         }
+        public ObservableCollection<Bilmodeller> BilListe
+        {
+            get
+            {
+                return converter.GetBilModel(SqlAccess.ExecuteSql("Select * from Bilmodeller"));
+            }
+        }
         public ObservableCollection<Kunde> KundeListe
         {
             get
@@ -42,6 +50,10 @@ namespace NP_ForsikringsData
         public void OpretKunde(Kunde kunde)
         {
             SqlAccess.ExecuteSql($"Insert into Kunde (Fornavn, Efternavn, Adresse, Postnummer, Telefon) values ('{kunde.Fornavn}', '{kunde.Efternavn}' , '{kunde.Adresse}', {kunde.Postnummer}, {kunde.Telefon})");
+        }
+        public void OpretBilmdl(Bilmodeller bilmodeller)
+        {
+            SqlAccess.ExecuteSql($"Insert into Bilmodeller (Mærke, Model, Startår, Slutår, Standartpris, Forsikringssum) values ('{bilmodeller.Mærke}', '{bilmodeller.Model}',{bilmodeller.Starår}, {bilmodeller.Slutår}, {bilmodeller.Standartpris}, {bilmodeller.Forsikringssum})");
         }
     }
 }
