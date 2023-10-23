@@ -30,19 +30,43 @@ namespace NP_ForsikringsData
             }
             return liste;
         }
+        public ObservableCollection<Forsikringer> GetForsikringer(DataTable table)
+        {
+            ObservableCollection<Forsikringer> liste = new ObservableCollection<Forsikringer>();
+            foreach (DataRow row in table.Rows)
+            {
+                Forsikringer forsikringer = GetForsikringer(row);
+                liste.Add(forsikringer);
+            }
+            return liste;
+
+        }
         public ObservableCollection<Bilmodeller> GetBilModel(DataTable table)
         {
             ObservableCollection<Bilmodeller> liste = new ObservableCollection<Bilmodeller>();
             foreach (DataRow row in table.Rows)
             {
-                Bilmodeller bilmodeller = GetBilModel(row);
+                Bilmodeller bilmodeller = GetBilModeller(row);
                 liste.Add(bilmodeller);
             }
             return liste;
         }
-        private Bilmodeller GetBilModel(DataRow row)
+        private Forsikringer GetForsikringer(DataRow row)
         {
-            Bilmodeller bilmodeller = new Bilmodeller((int)row["Id"], (string)row["Mærke"], (string)row["Model"], (int)row["Startår"], (int)row["Slutår"], (int)row["Standartpris"], (int)row["Forsikringssum"]);
+            Forsikringer forsikringer = new Forsikringer();
+            forsikringer.Id = (int)row["Id"];
+            forsikringer.Kunde = GetKunde(GetKundeTabel(row["KundeId"].ToString()).Rows[0]);
+            forsikringer.Bilmodeller = GetBilModeller(GetBilTabel(row["BilmodellerId"].ToString()).Rows[0]);
+            forsikringer.RegNr = (string)row["RegNr"];
+            forsikringer.Pris = (decimal)row["Pris"];
+            forsikringer.FSsum = (decimal)row["FSsum"];
+            forsikringer.Requirements = (string)row["Requirements"];
+
+            return forsikringer;
+        }
+        private Bilmodeller GetBilModeller(DataRow row)
+        {
+            Bilmodeller bilmodeller = new Bilmodeller((int)row["Id"], (string)row["Mærke"], (string)row["Model"], (int)row["Startår"], (int)row["Slutår"], (decimal)row["Standartpris"], (decimal)row["Forsikringssum"]);
 
             return bilmodeller;
         }
@@ -51,6 +75,20 @@ namespace NP_ForsikringsData
             Kunde kunde = new Kunde((int)row["Id"], (string)row["Fornavn"], (string)row["Efternavn"], (string)row["Adresse"], (int)row["Postnummer"], (int)row["Telefon"]);
 
             return kunde;
-        }             
+        }
+        private DataTable GetKundeTabel(string id)
+        {
+            DataTable table;
+            table = SqlAccess.ExecuteSql($"select * from Kunde where Kunde.Id = {id}");
+
+            return table;
+        }
+        private DataTable GetBilTabel(string id)
+        {
+            DataTable table;
+            table = SqlAccess.ExecuteSql($"select * from Bilmodeller where Bilmodeller.Id = {id}");
+
+            return table;
+        }
     }
 }

@@ -13,11 +13,18 @@ namespace ForsikringsClasses
         public int Id { get; set; }
         public string Mærke { get; set; }
         public string Model { get; set; }
-        public int Starår { get; set; }
+        public int Startår { get; set; }
         public int Slutår { get; set; }
-        public int Standartpris { get; set; }
-        public int Forsikringssum { get; set; }
-        public Bilmodeller(int id, string mærke, string model, int starår, int slutår, int standartpris, int forsikringssum)
+        public decimal Standartpris { get; set; }
+        public decimal Forsikringssum { get; set; }
+        public string KombineretBilinfo
+        {
+            get
+            {
+                return $"{Mærke}{Model}({Startår}-{Slutår})";
+            }
+        }
+        public Bilmodeller(int id, string mærke, string model, int startår, int slutår, decimal standartpris, decimal forsikringssum)
         {
             if (mærke == "")
             {
@@ -26,12 +33,12 @@ namespace ForsikringsClasses
             Id = id;
             Mærke = mærke;
             Model = model;
-            Starår = starår;
+            Startår = startår;
             Slutår = slutår;
             Standartpris = standartpris;
             Forsikringssum = forsikringssum;
         }
-        public Bilmodeller(string mærke, string model, int starår, int slutår, int standartpris, int forsikringssum)
+        public Bilmodeller(string mærke, string model, int startår, int slutår, decimal standartpris, decimal forsikringssum)
         {
             if (mærke == "")
             {
@@ -41,7 +48,7 @@ namespace ForsikringsClasses
             Id = -1;
             Mærke = mærke;
             Model = model;
-            Starår = starår;
+            Startår = startår;
             Slutår = slutår;
             Standartpris = standartpris;
             Forsikringssum = forsikringssum;

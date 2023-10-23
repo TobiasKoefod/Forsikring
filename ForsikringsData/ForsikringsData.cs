@@ -24,6 +24,13 @@ namespace NP_ForsikringsData
         {
 
         }
+        public ObservableCollection<Forsikringer> Forsikring
+        {
+            get
+            {
+                return converter.GetForsikringer(SqlAccess.ExecuteSql("Select * from Forsikringer"));
+            }
+        }
         public ObservableCollection<Bilmodeller> BilListe
         {
             get
@@ -39,6 +46,22 @@ namespace NP_ForsikringsData
             }
             
         }
+        public void UpdateForsikring(Forsikringer forsikringer)
+        {
+            SqlAccess.ExecuteSql($"Update Forsikringer set KundeId='{forsikringer.Kunde.Id}', BilmodellerId='{forsikringer.Bilmodeller.Id}', RegNr='{forsikringer.RegNr}', Pris={forsikringer.Pris.ToString(CultureInfo.InvariantCulture)}, FSsum={forsikringer.FSsum.ToString(CultureInfo.InvariantCulture)}, Requirements='{forsikringer.Requirements}' where Id={forsikringer.Id}");
+        }
+        public void FjernForsikring(Forsikringer forsikringer)
+        {
+            SqlAccess.ExecuteSql($"Delete from Forsikringer where Id='{forsikringer.Id}'");
+        }
+        public void OpretForsikring(Forsikringer forsikringer)
+        {
+            SqlAccess.ExecuteSql($"Insert into Forsikringer (KundeId, BilmodellerId, RegNr, Pris, FSsum, Requirements) values ('{forsikringer.Kunde.Id}', '{forsikringer.Bilmodeller.Id}', '{forsikringer.RegNr}', {forsikringer.Pris.ToString(CultureInfo.InvariantCulture)} ,{forsikringer.FSsum.ToString(CultureInfo.InvariantCulture)}, '{forsikringer.Requirements}')");
+        }
+        public void FjernBil(Bilmodeller bilmodeller)
+        {
+            SqlAccess.ExecuteSql($"Delete from Bilmodeller where Id='{bilmodeller.Id}'");
+        }
         public void FjernKunde(Kunde kunde)
         {
             SqlAccess.ExecuteSql($"Delete from Kunde where Id='{kunde.Id}'");
@@ -53,7 +76,11 @@ namespace NP_ForsikringsData
         }
         public void OpretBilmdl(Bilmodeller bilmodeller)
         {
-            SqlAccess.ExecuteSql($"Insert into Bilmodeller (Mærke, Model, Startår, Slutår, Standartpris, Forsikringssum) values ('{bilmodeller.Mærke}', '{bilmodeller.Model}',{bilmodeller.Starår}, {bilmodeller.Slutår}, {bilmodeller.Standartpris}, {bilmodeller.Forsikringssum})");
+            SqlAccess.ExecuteSql($"Insert into Bilmodeller (Mærke, Model, Startår, Slutår, Standartpris, Forsikringssum) values ('{bilmodeller.Mærke}', '{bilmodeller.Model}',{bilmodeller.Startår}, {bilmodeller.Slutår}, {bilmodeller.Standartpris.ToString(CultureInfo.InvariantCulture)}, {bilmodeller.Forsikringssum.ToString(CultureInfo.InvariantCulture)})");
+        }
+        public void changeBilmdl(Bilmodeller SelectedBilmodeller, Bilmodeller bilmodeller)
+        {
+            SqlAccess.ExecuteSql($"Update Bilmodeller set Mærke='{bilmodeller.Mærke}', Model='{bilmodeller.Model}', Startår={bilmodeller.Startår}, Slutår={bilmodeller.Slutår}, Standartpris={bilmodeller.Standartpris.ToString(CultureInfo.InvariantCulture)}, Forsikringssum={bilmodeller.Forsikringssum.ToString(CultureInfo.InvariantCulture)} where Id={SelectedBilmodeller.Id}");
         }
     }
 }

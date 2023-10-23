@@ -16,6 +16,13 @@ namespace Forsikring
         public int Postnummer { get; set; }
         public int Telefon { get; set; }
 
+        public string KombineretNavn
+        {
+            get
+            {
+                return $"{Fornavn} {Efternavn}";
+            }
+        }
         public Kunde(int id, string fornavn, string efternavn, string adresse, int postnummer, int telefon)
         {
             if (fornavn == "")
