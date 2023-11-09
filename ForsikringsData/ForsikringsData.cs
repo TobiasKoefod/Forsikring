@@ -6,15 +6,27 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace NP_ForsikringsData
 {
     public class ForsikringsData : INotifyPropertyChanged
     {
         SqlAccess SqlAccess { get; set; } = new SqlAccess();
+        public List<wInfo> extractWInfo(XElement baseElement, XDocument document)
+        {
+            List<wInfo> wInfoList = new List<wInfo>();
+
+            foreach (XElement element in baseElement.Elements())
+            {
+                wInfoList.Add(new wInfo(element));
+            }
+            return wInfoList;
+        }
 
         TableToObjectConverter converter = new TableToObjectConverter();
 

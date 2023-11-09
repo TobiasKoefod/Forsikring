@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using Forsikring;
 using ForsikringsClasses;
 using NP_ForsikringsData;
@@ -20,6 +21,11 @@ namespace NP_ForsikringsFunc
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        public List<wInfo> extractWInfo(XElement baseElement, XDocument document)
+        {
+            return ForsikringsData.extractWInfo(baseElement, document);
+        }
+
         public ObservableCollection<Kunde> KundeListe
         {
             get
