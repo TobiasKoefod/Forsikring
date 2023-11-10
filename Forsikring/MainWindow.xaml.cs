@@ -19,26 +19,12 @@ namespace Forsikring
 
 
         private Kunde SelectedKunde;
-        public Kunde ValgteKunde
-        {
-            get
-            {
-                return SelectedKunde;
-            }
-            set 
-            { 
-                SelectedKunde = value;
-                {
-                    PropertyChanged(this,
-                    new PropertyChangedEventArgs(nameof(SelectedKunde)));
-                }           
-            }
-        }
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
         }
+
         // -----------------------------------
 
         private void Tilføj_Click(object sender, RoutedEventArgs e) // Tilføj Kunde
@@ -194,7 +180,10 @@ namespace Forsikring
                 tbRequirements.Text = SelectedForsikringer.Requirements.ToString();
             }
         } // rediger Forsikring
-        private void weatherBTNcheck_Click(object sender, RoutedEventArgs e)
+
+        // -----------------------------------
+
+        private void weatherBTNcheck_Click(object sender, RoutedEventArgs e) // Vejr Tjekker
         {
             try
             {
@@ -208,9 +197,7 @@ namespace Forsikring
                 {
                     string windSpeed = windElementElement.Element("speed").Attribute("value").Value;
                     string windBehavior = windElementElement.Element("speed").Attribute("name").Value;
-                    //string windDirection = windElementElement.Element("direction").Attribute("name").Value;
-                    //string windDegree = windElementElement.Element("direction").Attribute("value").Value;
-                    speed.Text = windSpeed;
+                    speed.Text = (windSpeed + "m/s");
                     opførsel.Text = windBehavior;
                 }
                 // temperature values
@@ -227,16 +214,13 @@ namespace Forsikring
                 {
                     MessageBox.Show("Fejl.");
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Husk at skrive navet på en by!");
             }
-
         }
-        private string GetWeather(string location)
+        private string GetWeather(string location) // Vejr API KEY + xmlContent
         {
             string APIKEY = "b90eb4e2357c87f8821b0c865c88abff";
             string ApiUrl = $"http://api.openweathermap.org/data/2.5/weather?q={location}&mode=xml&units=metric&APPID={APIKEY}";
@@ -246,6 +230,8 @@ namespace Forsikring
                 return xmlContent;
             }
         }
+
+        // -----------------------------------
     }
 }
 

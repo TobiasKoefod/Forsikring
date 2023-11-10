@@ -7,7 +7,6 @@ namespace Forsikring
     {
         string name = "";
         string id = "";
-
         public wInfo(XElement elem)
         {
             foreach (var attr in elem.Attributes())

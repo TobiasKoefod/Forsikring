@@ -107,17 +107,18 @@
                 <TextBox x:Name="LocationTextBox" TextWrapping="Wrap" Margin="40,258,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="197"/>
                 <Button Content="Check"  Margin="40,331,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="36" Width="77" Click="weatherBTNcheck_Click"/>
                 <Label Content="By navn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,228,0,0" Width="98" Height="25" />
-                <TextBox x:Name="min" TextWrapping="Wrap" Margin="459,143,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="32"/>
-                <TextBox x:Name="gnst" TextWrapping="Wrap" Margin="364,143,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="32"/>
-                <TextBox x:Name="max" TextWrapping="Wrap" Margin="558,143,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="32"/>
-                <TextBox x:Name="opførsel" TextWrapping="Wrap" Margin="416,263,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Height="32"/>
-                <TextBox x:Name="speed" TextWrapping="Wrap" Margin="416,213,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Height="32"/>
-                <Label Content="Gnst" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="364,117,0,0" />
-                <Label Content="Min" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="459,117,0,0" />
-                <Label Content="Max" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="558,117,0,0"/>
-                <Label Content="Fart" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="351,216,0,0"/>
-                <Label Content="opførsel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="351,266,0,0" />
-                <Label Content="Temperatur" Margin="454,86,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox x:Name="min" TextWrapping="Wrap" Margin="596,111,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="32"/>
+                <TextBox x:Name="gnst" TextWrapping="Wrap" Margin="485,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="32"/>
+                <TextBox x:Name="max" TextWrapping="Wrap" Margin="596,154,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="32"/>
+                <TextBox x:Name="opførsel" TextWrapping="Wrap" Margin="558,317,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Height="32"/>
+                <TextBox x:Name="speed" TextWrapping="Wrap" Margin="558,265,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="146" Height="32"/>
+                <Label Content="Gnst" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="439,133,0,0" />
+                <Label Content="Min" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="558,117,0,0" />
+                <Label Content="Max" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="558,157,0,0"/>
+                <Label Content="Fart" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,268,0,0"/>
+                <Label Content="Vejr" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="611,227,0,0"/>
+                <Label Content="opførsel" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,320,0,0" />
+                <Label Content="Temperatur" Margin="538,64,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
             </Grid>
         </TabItem>
